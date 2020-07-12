@@ -14,7 +14,7 @@ main() {
 
   yarn release:standalone
   yarn test:standalone-release
-  yarn package
+  # yarn package
 }
 
 main "$@"
