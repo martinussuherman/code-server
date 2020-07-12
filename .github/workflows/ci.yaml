@@ -11,6 +11,7 @@ jobs:
       - name: Run ./ci/steps/fmt.sh
         run: |
           GOPATH=$HOME/go
+          GOBIN=$GOPATH/bin
           PATH=$GOBIN:$PATH
           GO111MODULE=on
           go get github.com/mvdan/sh/cmd/shfmt/
