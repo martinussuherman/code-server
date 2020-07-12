@@ -9,15 +9,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run ./ci/steps/fmt.sh
-        env:
-          PATH: /usr/local/go/bin:/root/go/bin:$PATH
-          GO111MODULE: on
-          ARCH: $(uname -m | sed 's/x86_64/amd64/; s/aarch64/arm64/') 
         run: |
-          echo $PATH
-          echo $ARCH
-          sudo apt-get -y curl tar
-          curl -fsSL "https://dl.google.com/go/go1.14.3.linux-$ARCH.tar.gz" | tar -C /usr/local -xz
+          GO111MODULE=on
           go get mvdan.cc/sh/v3/cmd/shfmt
           go get github.com/goreleaser/nfpm/cmd/nfpm
           ./ci/steps/fmt.sh
