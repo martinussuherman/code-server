@@ -30,24 +30,6 @@ jobs:
       - name: Run ./ci/steps/release.sh
         run: ./ci/steps/release.sh
 
-      - name: Upload npm package artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: npm-package
-          path: ./release-npm-package
-
-  linux-amd64:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Download npm package
-        uses: actions/download-artifact@v2
-        with:
-          name: npm-package
-          path: ./release-npm-package
-      
       - name: Run ./ci/steps/release-packages.sh
         run: ./ci/steps/release-packages.sh
       
@@ -56,3 +38,4 @@ jobs:
         with:
           name: release-packages
           path: ./release-packages
+
