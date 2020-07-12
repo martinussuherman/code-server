@@ -16,7 +16,6 @@ main() {
     "*.css"
     "*.md"
     "*.toml"
-    "*.yaml"
     "*.yml"
   )
   prettier --write --loglevel=warn $(git ls-files "${prettierExts[@]}")
