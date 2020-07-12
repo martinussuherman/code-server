@@ -15,7 +15,6 @@ jobs:
           PATH=$GOBIN:$PATH
           GO111MODULE=on
           go get github.com/mvdan/sh/cmd/shfmt/
-          go get github.com/goreleaser/nfpm/cmd/nfpm
           ./ci/steps/fmt.sh
 
       - name: Run ./ci/steps/lint.sh
@@ -31,11 +30,16 @@ jobs:
         run: ./ci/steps/release.sh
 
       - name: Run ./ci/steps/release-packages.sh
-        run: ./ci/steps/release-packages.sh
-      
+        run: |
+          GOPATH=$HOME/go
+          GOBIN=$GOPATH/bin
+          PATH=$GOBIN:$PATH
+          GO111MODULE=on
+          go get github.com/goreleaser/nfpm/cmd/nfpm
+          ./ci/steps/release-packages.sh
+
       - name: Upload release artifacts
         uses: actions/upload-artifact@v2
         with:
           name: release-packages
           path: ./release-packages
-
