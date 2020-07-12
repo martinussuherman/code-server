@@ -9,7 +9,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run ./ci/steps/fmt.sh
-        run: ./ci/steps/fmt.sh
+        run: |
+          go get mvdan.cc/sh/v3/cmd/shfmt
+          go get github.com/goreleaser/nfpm/cmd/nfpm
+          ./ci/steps/fmt.sh
 
       - name: Run ./ci/steps/lint.sh
         run: ./ci/steps/lint.sh
