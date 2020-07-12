@@ -11,8 +11,8 @@ jobs:
       - name: Run ./ci/steps/fmt.sh
         run: |
           GO111MODULE=on
-          go get github.com/mvdan/sh
-          go get github.com/goreleaser/nfpm/cmd/nfpm
+          go get -u github.com/mvdan/sh
+          go get -u github.com/goreleaser/nfpm
           ./ci/steps/fmt.sh
 
       - name: Run ./ci/steps/lint.sh
